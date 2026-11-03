@@ -7,13 +7,27 @@
 </head>
 <body>
 
-  <h1>Weather App</h1>
+  <div class="contenedor">
+    <h1>Weather App</h1>
 
-  <input type="text" id="ciudad" placeholder="Ingresa una ciudad" />
-  <button onclick="buscar()">Buscar</button>
+    <div class="busqueda">
+      <input type="text" id="ciudad" placeholder="Ingresa una ciudad..." />
+      <button onclick="buscar()">Buscar</button>
+    </div>
 
-  <p id="resultado"></p>
-  <button id="toggle" onclick="cambiarUnidad()" style="display:none">Cambiar °C / °F</button>
+    <p id="cargando" style="display:none">Cargando...</p>
+    <p id="error" style="display:none; color:red"></p>
+
+    <div id="tarjeta" style="display:none">
+      <h2 id="nombre-ciudad"></h2>
+      <p id="temperatura" class="temp"></p>
+      <p id="condicion"></p>
+      <p>Humedad: <span id="humedad"></span></p>
+      <p>Viento: <span id="viento"></span></p>
+      <p>Sensación térmica: <span id="sensacion"></span></p>
+      <button onclick="cambiarUnidad()">Cambiar °C / °F</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

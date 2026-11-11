@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Weather App</title>
@@ -11,21 +11,21 @@
     <h1>Weather App</h1>
 
     <div class="busqueda">
-      <input type="text" id="ciudad" placeholder="Ingresa una ciudad..." />
-      <button id="btn-buscar">Buscar</button>
+      <input type="text" id="ciudad" placeholder="Enter a city..." />
+      <button id="btn-buscar">Search</button>
     </div>
 
-    <p id="cargando" style="display:none">Cargando...</p>
+    <p id="cargando" style="display:none">Loading...</p>
     <p id="error" style="display:none"></p>
 
     <div id="tarjeta" style="display:none">
       <h2 id="nombre-ciudad"></h2>
       <p id="temperatura" class="temp"></p>
       <p id="condicion"></p>
-      <p>Humedad: <span id="humedad"></span></p>
-      <p>Viento: <span id="viento"></span></p>
-      <p>Sensación térmica: <span id="sensacion"></span></p>
-      <button id="btn-unidad">Cambiar °C / °F</button>
+      <p>Humidity: <span id="humedad"></span></p>
+      <p>Wind: <span id="viento"></span></p>
+      <p>Feels like: <span id="sensacion"></span></p>
+      <button id="btn-unidad">Switch °C / °F</button>
     </div>
   </div>
 
@@ -36,38 +36,38 @@
     let enCelsius = true;
 
     function renderClima(clima) {
-      document.getElementById('nombre-ciudad').textContent = clima.ciudad;
-      document.getElementById('condicion').textContent = clima.condicion;
-      document.getElementById('humedad').textContent = clima.humedad + '%';
-      document.getElementById('viento').textContent = clima.viento + ' km/h';
+      document.getElementById('nombre-ciudad').textContent = clima.city;
+      document.getElementById('condicion').textContent = clima.condition;
+      document.getElementById('humedad').textContent = clima.humidity + '%';
+      document.getElementById('viento').textContent = clima.wind + ' km/h';
       renderTemperatura();
       document.getElementById('tarjeta').style.display = 'block';
     }
 
     function renderTemperatura() {
       const temp = enCelsius
-        ? climaActual.temperatura
-        : (climaActual.temperatura * 9 / 5) + 32;
+        ? climaActual.temperature
+        : (climaActual.temperature * 9 / 5) + 32;
 
       const feels = enCelsius
-        ? climaActual.sensacion
-        : (climaActual.sensacion * 9 / 5) + 32;
+        ? climaActual.feelsLike
+        : (climaActual.feelsLike * 9 / 5) + 32;
 
-      const unidad = enCelsius ? '°C' : '°F';
+      const unit = enCelsius ? '°C' : '°F';
 
-      document.getElementById('temperatura').textContent = Math.round(temp) + unidad;
-      document.getElementById('sensacion').textContent = Math.round(feels) + unidad;
+      document.getElementById('temperatura').textContent = Math.round(temp) + unit;
+      document.getElementById('sensacion').textContent = Math.round(feels) + unit;
     }
 
     document.getElementById('btn-buscar').addEventListener('click', async () => {
-      const ciudad = document.getElementById('ciudad').value;
+      const city = document.getElementById('ciudad').value;
 
       document.getElementById('cargando').style.display = 'block';
       document.getElementById('tarjeta').style.display = 'none';
       document.getElementById('error').style.display = 'none';
 
       try {
-        climaActual = await getCityWeather(ciudad);
+        climaActual = await getCityWeather(city);
         renderClima(climaActual);
       } catch (err) {
         document.getElementById('error').textContent = err.message;

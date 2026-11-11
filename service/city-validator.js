@@ -1,16 +1,16 @@
 export function validateCity(city) {
   if (!city || typeof city !== 'string') {
-    throw new Error('Ciudad requerida');
+    throw new Error('City required');
   }
 
   const trimmed = city.trim();
 
   if (trimmed.length === 0) {
-    throw new Error('Ciudad no puede estar vacía');
+    throw new Error('City cannot be empty');
   }
 
   if (trimmed.length < 2) {
-    throw new Error('Nombre de ciudad inválido');
+    throw new Error('Invalid city name');
   }
 
   return trimmed;

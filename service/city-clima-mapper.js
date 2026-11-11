@@ -1,10 +1,10 @@
 export function mapToClima(data) {
   return {
-    ciudad: data.resolvedAddress,
-    temperatura: data.currentConditions.temp,
-    sensacion: data.currentConditions.feelslike,
-    humedad: data.currentConditions.humidity,
-    viento: data.currentConditions.windspeed,
-    condicion: data.currentConditions.conditions,
+    city: data.resolvedAddress,
+    temperature: data.currentConditions.temp,
+    feelsLike: data.currentConditions.feelslike,
+    humidity: data.currentConditions.humidity,
+    wind: data.currentConditions.windspeed,
+    condition: data.currentConditions.conditions,
   };
 }

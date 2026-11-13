@@ -1,88 +1,58 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-  <div class="contenedor">
-    <h1>Weather App</h1>
+  <main class="contenedor">
+    <h1>🌤️ Weather App</h1>
 
-    <div class="busqueda">
-      <input type="text" id="ciudad" placeholder="Enter a city..." />
-      <button id="btn-buscar">Search</button>
-    </div>
+    <form id="form-busqueda" class="busqueda">
+      <input
+        type="text"
+        id="ciudad"
+        placeholder="Escribe una ciudad..."
+        autocomplete="off"
+        aria-label="Ciudad"
+      >
 
-    <p id="cargando" style="display:none">Loading...</p>
-    <p id="error" style="display:none"></p>
+      <button type="submit">Buscar</button>
 
-    <div id="tarjeta" style="display:none">
+      <div
+        id="sugerencias"
+        class="sugerencias"
+        hidden
+      ></div>
+    </form>
+
+    <p id="cargando" hidden>Cargando...</p>
+    <p id="error" role="alert" hidden></p>
+
+    <section id="tarjeta" class="tarjeta" hidden>
       <h2 id="nombre-ciudad"></h2>
-      <p id="temperatura" class="temp"></p>
-      <p id="condicion"></p>
-      <p>Humidity: <span id="humedad"></span></p>
-      <p>Wind: <span id="viento"></span></p>
-      <p>Feels like: <span id="sensacion"></span></p>
-      <button id="btn-unidad">Switch °C / °F</button>
-    </div>
-  </div>
 
-  <script type="module">
-    import { getCityWeather } from './service/get-city-weather.js';
+      <p id="temperatura" class="temperatura"></p>
 
-    let climaActual = null;
-    let enCelsius = true;
+      <div class="estado-clima">
+        <span id="emoji-clima" class="emoji-clima"></span>
+        <span id="condicion"></span>
+      </div>
 
-    function renderClima(clima) {
-      document.getElementById('nombre-ciudad').textContent = clima.city;
-      document.getElementById('condicion').textContent = clima.condition;
-      document.getElementById('humedad').textContent = clima.humidity + '%';
-      document.getElementById('viento').textContent = clima.wind + ' km/h';
-      renderTemperatura();
-      document.getElementById('tarjeta').style.display = 'block';
-    }
+      <p>💧 Humedad: <span id="humedad"></span></p>
+      <p>💨 Viento: <span id="viento"></span></p>
+      <p>🌡️ Sensación térmica: <span id="sensacion"></span></p>
 
-    function renderTemperatura() {
-      const temp = enCelsius
-        ? climaActual.temperature
-        : (climaActual.temperature * 9 / 5) + 32;
+      <button id="btn-unidad" type="button">
+        Cambiar °C / °F
+      </button>
+    </section>
+  </main>
 
-      const feels = enCelsius
-        ? climaActual.feelsLike
-        : (climaActual.feelsLike * 9 / 5) + 32;
-
-      const unit = enCelsius ? '°C' : '°F';
-
-      document.getElementById('temperatura').textContent = Math.round(temp) + unit;
-      document.getElementById('sensacion').textContent = Math.round(feels) + unit;
-    }
-
-    document.getElementById('btn-buscar').addEventListener('click', async () => {
-      const city = document.getElementById('ciudad').value;
-
-      document.getElementById('cargando').style.display = 'block';
-      document.getElementById('tarjeta').style.display = 'none';
-      document.getElementById('error').style.display = 'none';
-
-      try {
-        climaActual = await getCityWeather(city);
-        renderClima(climaActual);
-      } catch (err) {
-        document.getElementById('error').textContent = err.message;
-        document.getElementById('error').style.display = 'block';
-      } finally {
-        document.getElementById('cargando').style.display = 'none';
-      }
-    });
-
-    document.getElementById('btn-unidad').addEventListener('click', () => {
-      if (!climaActual) return;
-      enCelsius = !enCelsius;
-      renderTemperatura();
-    });
-  </script>
-
+  <script type="module" src="./service/weather-icons.js"></script>
 </body>
 </html>

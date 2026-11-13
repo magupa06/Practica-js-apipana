@@ -1,4 +1,3 @@
-
 const API_URL = "https://geocoding-api.open-meteo.com/v1/search";
 
 export async function buscarCiudades(texto, signal) {
@@ -11,7 +10,7 @@ export async function buscarCiudades(texto, signal) {
   const parametros = new URLSearchParams({
     name: busqueda,
     count: "10",
-    language: "es",
+    language: "en",
     format: "json"
   });
 
@@ -21,7 +20,7 @@ export async function buscarCiudades(texto, signal) {
   );
 
   if (!respuesta.ok) {
-    throw new Error("Error al buscar ciudades");
+    throw new Error("Error searching for cities");
   }
 
   const datos = await respuesta.json();

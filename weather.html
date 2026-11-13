@@ -1,6 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +14,12 @@
       <input
         type="text"
         id="ciudad"
-        placeholder="Escribe una ciudad..."
+        placeholder="Type a city..."
         autocomplete="off"
-        aria-label="Ciudad"
+        aria-label="City"
       >
 
-      <button type="submit">Buscar</button>
+      <button type="submit">Search</button>
 
       <div
         id="sugerencias"
@@ -30,7 +28,7 @@
       ></div>
     </form>
 
-    <p id="cargando" hidden>Cargando...</p>
+    <p id="cargando" hidden>Loading...</p>
     <p id="error" role="alert" hidden></p>
 
     <section id="tarjeta" class="tarjeta" hidden>
@@ -43,12 +41,12 @@
         <span id="condicion"></span>
       </div>
 
-      <p>💧 Humedad: <span id="humedad"></span></p>
-      <p>💨 Viento: <span id="viento"></span></p>
-      <p>🌡️ Sensación térmica: <span id="sensacion"></span></p>
+      <p>💧 Humidity: <span id="humedad"></span></p>
+      <p>💨 Wind: <span id="viento"></span></p>
+      <p>🌡️ Feels like: <span id="sensacion"></span></p>
 
       <button id="btn-unidad" type="button">
-        Cambiar °C / °F
+        Switch °C / °F
       </button>
     </section>
   </main>

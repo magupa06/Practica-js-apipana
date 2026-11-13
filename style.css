@@ -99,3 +99,47 @@ button:hover {
 #tarjeta button:hover {
   background: #666;
 }
+
+.busqueda {
+  position: relative;
+}
+
+.sugerencias {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(100%, 380px);
+  z-index: 10;
+  background: white;
+  color: #222;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px #0002;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.sugerencias[hidden] {
+  display: none;
+}
+
+.sugerencia {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+
+.sugerencia:hover,
+.sugerencia:focus {
+  background: #e8f2ff;
+}
+
+.emoji-clima {
+  font-size: 2.3rem;
+  vertical-align: middle;
+  margin-right: 8px;
+}

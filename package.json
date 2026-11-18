@@ -1,0 +1,24 @@
+{
+  "name": "practica-js-apipana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magupa06/Practica-js-apipana.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/magupa06/Practica-js-apipana/issues"
+  },
+  "homepage": "https://github.com/magupa06/Practica-js-apipana#readme",
+  "devDependencies": {
+    "vitest": "^5.1.1"
+  }
+}

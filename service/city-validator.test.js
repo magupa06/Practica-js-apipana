@@ -17,4 +17,14 @@ describe('City validator', () => {
     'Invalid city name'
     );
   });
+  it('should return the city when it has no surrounding spaces', () => {
+  const result = validateCity('Barcelona');
+
+  expect(result).toBe('Barcelona');
+  });
+  it('should return a trimmed city when the city contains spaces', () => {
+  const result = validateCity('  Barcelona  ');
+
+  expect(result).toBe('Barcelona');
+  });
 }); 

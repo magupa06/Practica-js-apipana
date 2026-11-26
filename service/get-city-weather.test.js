@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getCityWeather } from './weather-service.js';
+import { getCityWeather } from './get-city-weather.js';
 import { fetchWeather } from '../persistence/weather-client.js';
 
 vi.mock('../persistence/weather-client.js');
@@ -24,22 +24,23 @@ describe('getCityWeather', () => {
   });
 
   it('should return weather when the city exists', async () => {
-    fetchWeather.mockResolvedValue({
-      name: 'Panama',
-      main: {
-        temp: 28,
-        humidity: 80
-      },
-      weather: [{ description: 'clear sky' }]
-    });
-
-    const result = await getCityWeather('Panama');
-
-    expect(result).toEqual({
-      city: 'Panama',
-      temperature: 28,
+  fetchWeather.mockResolvedValue({
+    resolvedAddress: 'Panama',
+    currentConditions: {
+      temp: 28,
+      feelslike: 30,
       humidity: 80,
-      description: 'clear sky'
-    });
+      conditions: 'clear sky'
+    }
   });
+
+  const result = await getCityWeather('Panama');
+
+  expect(result).toMatchObject({
+    city: 'Panama',
+    temperature: 28,
+    feelsLike: 30,
+    humidity: 80
+  });
+});
 });
